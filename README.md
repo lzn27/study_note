@@ -24,3 +24,5 @@ int main(){
     return 0;
 }
 ```
+
+# unsigned int 范围是 0~4294967295
