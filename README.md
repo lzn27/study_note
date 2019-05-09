@@ -36,3 +36,13 @@ int 范围不够时可尝试使用unsigned int
 ```C++ 
 using base::fun;//在派生类的函数定义处书写
 ```
+
+# 4. const顶层底层
+```c++
+const int *p1;//底层const，p1是一个指向const int或者int类型的指针。通过p1不可改变指向变量的值。
+
+int *const p2;//顶层const，p2是一个指向int类型的指针，但p2本身不可改变。
+
+const int t;
+const int *p=&t;//当一个变量是const类型时，只可以使用底层const指针指向它。
+```
