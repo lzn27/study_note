@@ -46,3 +46,9 @@ int *const p2;//顶层const，p2是一个指向int类型的指针，但p2本身�
 const int t;
 const int *p=&t;//当一个变量是const类型时，只可以使用底层const指针指向它。
 ```
+
+# 5. static函数与static变量
+static定义的函数与变量都属于类，不属于某个对象，所以static函数只能操作static变量，和static函数。普通成员函数与成员变量都不能访问。
+static变量由该类的所有对象共享。
+static型变量只被初始化一次，下次执行初始化语句会直接跳过。
+普通函数包含一个指向对象的指针，static函数没有。
