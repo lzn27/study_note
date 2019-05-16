@@ -20,4 +20,4 @@ Dijkstra(迪杰斯特拉)算法是典型的单源最短路径算法，用于计�
 
 (4) 重复步骤(2)和(3)，直到遍历完所有顶点。
 
-![picture]()
+![picture](https://github.com/lzn27/study_note/blob/master/Dijkstra/Dijkstra.jpg?raw=true)
