@@ -123,3 +123,7 @@ n &= (n – 1)//可以清除二进制表示下的n的最后一个二进制位1�
 - const_cast：只负责改变底层const
 - reinterpret_cast：低层次上的重新解释，较危险
 - dynamic_cast：转换类类型，通常应含有虚函数
+
+# 15. C++运行时类型识别RTTI
+typeid：返回表达式的类型，具体是返回一个常量对象的引用，该对象是标准库type_info或其public派生类型
+dynamic_cast：将基类指针或引用安全的转换成派生类的指针或引用
