@@ -7,9 +7,13 @@
 3. 它保护了每个进程的地址空间不被其他进程破坏。
 # 一。物理和虚拟寻址
     计算机系统的主存被组织成一个有M个连续的字节大小的单元组成的数组。每字节都有一个唯一的物理地址（PA）。第一个字节的物理地址为0，接下来的字节地址为2，依次类推。给定这种简单的结构，CPU方位内存的最自然的方式就是使用物理地址。我们把这种方式称为物理寻址（physical addressing）。
+
 ![](https://github.com/lzn27/study_note/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/images/%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E7%89%A9%E7%90%86%E5%AF%BB%E5%9D%80%E7%9A%84%E7%B3%BB%E7%BB%9F.png)
+
     早期的PC使用的是物理地址，而且诸如数字信号处理器、嵌入式微控制器以及Cray超级计算机这样的系统仍然还是继续使用这种寻址方式。然而现代的处理器使用的是一种称为虚拟寻址（virtual address）的寻址方式。
+
 ![](https://github.com/lzn27/study_note/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/images/%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E5%AF%BB%E5%9D%80%E7%9A%84%E7%B3%BB%E7%BB%9F.png)
+
     使用虚拟地址，CPU通过生成一个虚拟地址（Virtual Address，VA）来访问主存，这个虚拟地址在被送到内存之前先转换成适当的物理地址。将这个虚拟地址转换成物理地址的任务叫做地址翻译（address translation）。就像异常处理一样，地址翻译需要CPU硬件和操作系统的紧密合作。CPU芯片上叫做内存管理单元（MMU）的专有硬件，利用存放主存中的查询表来动态的翻译虚拟地址，该表的内容由操作系统来管理。
 
 # 二。地址空间
@@ -41,11 +45,3 @@
 ![](https://github.com/lzn27/study_note/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/images/%E5%9C%B0%E5%9D%80%E7%BF%BB%E8%AF%914.png)
 
 
-
-
-
---------------------- 
-作者：MasterT-J 
-来源：CSDN 
-原文：https://blog.csdn.net/qq_21125183/article/details/80570585 
-版权声明：本文为博主原创文章，转载请附上博文链接！
