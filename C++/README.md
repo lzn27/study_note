@@ -139,3 +139,12 @@ static成员变量需要在类定义体外进行初始化与定义，因为stati
 
 # 18. 成员变量的内存顺序
 C++中处在同一个访问标识符（指public、private、protected）下的声明的数据成员，在内存中必定保证以其声明顺序出现。而处于不同访问标识符声明下的成员则无此规定。
+
+#19. 智能指针auto_ptr与unique_ptr
+unique_ptr是c++11的新特性，具有如下特点：
+1. unique_ptr不可进行operator=复制操作，提供了专门的移动函数std::move()，使用如下：
+```c++
+    unique_ptr<int> u_p(new int(3));
+    unique_ptr<int> u2 = std::move(u_p);
+```
+2. unique_ptr可以作为容器元素，auto_ptr不可以
