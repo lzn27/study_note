@@ -146,5 +146,41 @@ unique_ptr是c++11的新特性，具有如下特点：
 ```c++
     unique_ptr<int> u_p(new int(3));
     unique_ptr<int> u2 = std::move(u_p);
+    unique_ptr<int> u3(u2.release());//release() 返回指针
 ```
 2. unique_ptr可以作为容器元素，auto_ptr不可以
+
+# 20. c++ 11 thread库
+```C++
+#include <iostream> // std::cout
+#include <thread>   // std::thread
+#include<mutex>
+
+volatile int num = 0;
+std::mutex mtx;
+
+void thread_task(int n) {
+    for (int i = 0; i < n; i++) {
+        std::unique_lock<std::mutex> lck(mtx);
+        num++;
+    }
+}
+void thread_task2(int n) {
+    for (int i = 0; i < n; i++) {
+        std::unique_lock<std::mutex> lck(mtx);
+        num++;
+    }
+}
+
+int main(){
+    std::thread t(thread_task, 10000000);
+    std::thread t2(thread_task2, 10000000);
+    t.join();
+    t2.join();
+    std::cout << num;
+    return 0;
+}
+```
+std::unique_lock可以方便加锁，unique_lock对象被析构时自动unlock对应的mutex，但是比手动mutex.unlock()效率低，所需要的执行时间更长。
+thead0.join()阻塞当前线程，直到线程thread0执行完毕，并且会被当前线程回收资源。然后返回。
+thread1.detach()将线程thread0分离，即线程thread0执行完毕由操作系统自动进行资源回收。
