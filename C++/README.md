@@ -182,5 +182,9 @@ int main(){
 }
 ```
 std::unique_lock可以方便加锁，unique_lock对象被析构时自动unlock对应的mutex，但是比手动mutex.unlock()效率低，所需要的执行时间更长。
+
+执行速度手动unlock() > lock_guard管理 > unique_lock管理
+
 thead0.join()阻塞当前线程，直到线程thread0执行完毕，并且会被当前线程回收资源。然后返回。
+
 thread1.detach()将线程thread0分离，即线程thread0执行完毕由操作系统自动进行资源回收。
