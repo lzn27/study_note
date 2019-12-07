@@ -1,3 +1,5 @@
+# 1.基本概念
+数据库，表，字段，记录.
 # 1.主键 外键
 primary key foreign key
 # 2.索引
