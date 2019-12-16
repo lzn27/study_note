@@ -190,7 +190,7 @@ thead0.join()阻塞当前线程，直到线程thread0执行完毕，并且会被
 thread1.detach()将线程thread0分离，即线程thread0执行完毕由操作系统自动进行资源回收。
 
 # 21. shared_ptr weak_ptr
-shared_ptr和weak_ptr共享一个ref_count对象（使用传统指针指向），ref_count里包含两个原子操作的计数变量：_uses, \_weaks，分别对应shared_ptr的计数和weak_ptr的计数。当_uses==0时，指向的对象被delete，同时判断_weaks是否==0，当_weaks==0时，ref_count被delete。shared_ptr和weak_ptr自己本身将在离开作用域后自动析构。
+shared_ptr和weak_ptr共享一个ref_count对象（使用传统指针指向），ref_count里包含两个原子操作的计数变量：_uses, _weaks，分别对应shared_ptr的计数和weak_ptr的计数。当_uses==0时，指向的对象被delete，同时将_weaks引用计数减1(下面解释)，当_weaks==0时，ref_count被delete。shared_ptr和weak_ptr自己本身将在离开作用域后自动析构。更具体解释：由于ref_counter中的_uses和_weaks在初始化时初值均设为1。且在第一个shared_ptr构造完成时，ref_counter就已经构造完成，即_uses==1、_weaks==1。所以后面开始使用weak_ptr时，_weaks的计数数值始终比实际的weak_ptr数量多1，这样可以保证在没有使用weak_ptr的情况下，ref_count不被析构。而_uses因为是由shared_ptr建立的，其满足_uses等于实际shared_ptr数量。当最后一个shared_ptr析构时，_uses减1等于0，管理的对象被析构，同时会将_weaks的数值也减去1，这样_weaks就不再比实际的weak_ptr数量多1，而是与之相等。当最后一个weak_ptr析构时，就可以满足_weaks==0,从而可以析构ref_count。
 
 # 22. C++单例模式
 ```c++
