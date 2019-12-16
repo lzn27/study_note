@@ -190,7 +190,7 @@ thead0.join()阻塞当前线程，直到线程thread0执行完毕，并且会被
 thread1.detach()将线程thread0分离，即线程thread0执行完毕由操作系统自动进行资源回收。
 
 # 21. shared_ptr weak_ptr
-shared_ptr和weak_ptr共享一个ref_count对象（使用传统指针指向），ref_count里包含两个原子操作的计数变量：_uses, \_weaks，分别对应shared_ptr的计数和weak_ptr的计数。当_uses==0时，指向的对象被delete，同时判断_weaks是否==0，当_weaks==0时，red_count被delete。shared_ptr和weak_ptr自己本身将在离开作用域后自动析构。
+shared_ptr和weak_ptr共享一个ref_count对象（使用传统指针指向），ref_count里包含两个原子操作的计数变量：_uses, \_weaks，分别对应shared_ptr的计数和weak_ptr的计数。当_uses==0时，指向的对象被delete，同时判断_weaks是否==0，当_weaks==0时，ref_count被delete。shared_ptr和weak_ptr自己本身将在离开作用域后自动析构。
 
 # 22. C++单例模式
 ```c++
