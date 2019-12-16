@@ -191,3 +191,39 @@ thread1.detach()将线程thread0分离，即线程thread0执行完毕由操作�
 
 # 21. shared_ptr weak_ptr
 shared_ptr和weak_ptr共享一个ref_count对象（使用传统指针指向），ref_count里包含两个原子操作的计数变量：_uses, \_weaks，分别对应shared_ptr的计数和weak_ptr的计数。当_uses==0时，指向的对象被delete，同时判断_weaks是否==0，当_weaks==0时，red_count被delete。shared_ptr和weak_ptr自己本身将在离开作用域后自动析构。
+
+# 22. C++单例模式
+```c++
+//懒汉版，延迟初始化
+class Singleton{
+public:
+    // 注意返回的是引用。
+    static Singleton& getInstance(){
+        static Singleton m_instance;  //局部静态变量
+        return m_instance;
+    }
+private:
+    Singleton(); //私有构造函数，不允许使用者自己生成对象
+    ~Singleton();
+    Singleton(const Singleton& other);
+    Singleton& operator=(const Singleton&);
+};
+
+//饿汉版本，程序运行一开始就实例化对象
+class Singleton
+{
+public:
+	static Singleton& getInstance() {
+		return instance;
+	}
+private:
+	static Singleton instance;//静态成员变量
+	Singleton();
+	~Singleton();
+	Singleton(const Singleton&);
+	Singleton& operator=(const Singleton&);
+}
+
+// initialize defaultly
+Singleton Singleton::instance;
+```
