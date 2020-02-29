@@ -27,7 +27,7 @@ int main(){
 ```
 
 # 2. unsigned int 范围是 0~4294967295
-int 范围不够时可尝试使用unsigned int
+int 范围不够时可尝试使用unsigned int，int数据与unsigned int数据进行比较时，c++会将int转换成unsigned int 进行比较，转换方式为二进制不变直接改变解读方式为int，这在int为负数时，会出错。在比较时应当用相同类型！！
 
 # 3. 继承中的类作用域
 - 首先在编译时：根据静态类型进行进行名字查找。
