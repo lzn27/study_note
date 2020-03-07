@@ -49,14 +49,32 @@ const int *p=&t;//当一个变量是const类型时，只可以使用底层const�
 ```
 
 # 5. static函数与static变量
+1. c语言中static：持久存储和访问性。
+    - static变量存在与**全局&静态区**中（和全局变量一样的位置），内置类型的static变量在main()函数执行前就被初始化，并存在于整个程序运行过程中，static变量定义的位置对应与于其可见的作用域，（eg.仅某个花括号内部可见，仅该文件内可见）。
+    - static函数表示该函数仅在该文件内部可见。
+2. c++中static：
+    - static global variables (deprecated)
+    - static free function (deprecated)  //类外函数
+    - static local variables --Persistent storage
+    - static member variables --Shared by all instances
+    - static member function  --Shared by all instances, can only access static member variables and static functions
+    - 与内置类型的static变量不同（即在main()函数前就已经初始化完成），本地static对象的初始化在程序第一次执行到初始化语句时才进行构造。全局static对象和内置类型一样在main()函数之前构造。
 - static定义的函数与变量都属于类，不属于某个对象，所以static函数只能操作static变量，和static函数。普通成员函数与成员变量都不能访问。
 - static变量由该类的所有对象共享。
 - static型变量只被初始化一次，下次执行初始化语句会直接跳过。
 - 普通函数包含一个指向对象的指针，static函数没有。
 
+## 5.1 extern
+extern用于书写声明变量，表示该变量是外部文件所定义的。
+```c
+extern int a;//表示变量a是另一个文件定义的全局变量a
+void func();//函数声明则不需要extern
+extern "c"用于声明以下代码使用c编译器
+```
+
 # 6. 变量自动初始化
 - 栈中的变量（函数体中的自动变量）和堆中的变量（动态内存）会保有不确定的值
-- 全局变量和静态变量（包括局部静态变量）会初始化为零
+- 全局变量和静态变量（包括局部静态变量）没有被显式初始化，或者显式初始化为0，它们就会被放在bss中，如果初始化不为0，就放在data中，bss，data都属于全局&静态区。bss的好处是，仅保存变量占用空间的大小，减小可执行文件大小。其中注意的是在c++中，static对象的始终放在bss中，即第一次执行到语句时才进行初始化。
 ```C++
 //在函数体中定义
 int i;                    // 不确定值
@@ -223,9 +241,8 @@ private:
 	Singleton(const Singleton&);
 	Singleton& operator=(const Singleton&);
 }
-
 // initialize defaultly
-Singleton Singleton::instance;
+Singleton Singleton::instance;//在类外初始化
 ```
 
 # 23. c++ string实现
