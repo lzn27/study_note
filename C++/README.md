@@ -160,7 +160,7 @@ C++中处在同一个访问标识符（指public、private、protected）下的�
 
 # 19. 智能指针auto_ptr与unique_ptr
 unique_ptr是c++11的新特性，具有如下特点：
-1. unique_ptr不可进行operator=复制操作，提供了专门的移动函数std::move()，使用如下：
+1. unique_ptr不可进行operator=复制操作，可以使用移动函数std::move()，返回该对象的右值引用，这样可以调用移动赋值运算符函数，完成移动操作。使用如下：
 ```c++
     unique_ptr<int> u_p(new int(3));
     unique_ptr<int> u2 = std::move(u_p);
@@ -312,3 +312,8 @@ private:
     char *data_;
 };
 ```
+
+# 24. c++ 0x move semantics
+解决问题：两个。
+1. 函数返回临时对象的拷贝问题
+2. 其它只想移动的地方，结合move()函数使用，其返回对象的右值引用方便调用 move constructor & move assignment operator。

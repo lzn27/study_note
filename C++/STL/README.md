@@ -1,12 +1,12 @@
 # 1. 关联容器(associative_container)
 - map                红黑树，自动排序，不能重复
 - set                红黑树，自动排序，不能重复
-- unordered_map      哈希表，不会自动排序，不能重复
-- unordered_set      哈希表，不会自动排序，不能重复
+- unordered_map      哈希表，乱序，不能重复
+- unordered_set      哈希表，乱序，不能重复
 - multimap           红黑树，自动排序，可以重复
 - multiset           红黑树，自动排序，可以重复
-- unordered_multimap 哈希表，不会自动排序，可以重复
-- unordered_multiset 哈希表，不会自动排序，可以重复
+- unordered_multimap 哈希表，乱序，可以重复
+- unordered_multiset 哈希表，乱序，可以重复
 
 # 2. 红黑树
 1）每个结点是红色或者黑色。
