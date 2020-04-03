@@ -62,7 +62,7 @@ const int *p=&t;//当一个变量是const类型时，只可以使用底层const�
 - static定义的函数与变量都属于类，不属于某个对象，所以static函数只能操作static变量，和static函数。普通成员函数与成员变量都不能访问。
 - static变量由该类的所有对象共享。
 - static型变量只被初始化一次，下次执行初始化语句会直接跳过。
-- 普通函数包含一个指向对象的指针，static函数没有。
+- 普通函数包含一个指向对象的this指针，static函数没有。
 
 ## 5.1 extern
 extern用于书写声明变量，表示该变量是外部文件所定义的。
@@ -70,6 +70,7 @@ extern用于书写声明变量，表示该变量是外部文件所定义的。
 extern int a;//表示变量a是另一个文件定义的全局变量a
 void func();//函数声明则不需要extern
 extern "c"用于声明以下代码使用c编译器
+    - 为了解决C语言编译器与c++编译器对名字的不同处理，而导致的链接问题。
 ```
 
 # 6. 变量自动初始化
@@ -317,3 +318,16 @@ private:
 解决问题：两个。
 1. 函数返回临时对象的拷贝问题
 2. 其它只想移动的地方，结合move()函数使用，其返回对象的右值引用方便调用 move constructor & move assignment operator。
+    - move()返回一个对象的右值引用
+
+# C语言文件编译到可执行文件的过程
+.c -> 预处理 -> .i -> 编译器 -> .s -> 汇编器 -> .o -> 链接器 -> 可执行文件
+- 预处理(Preprocessing)：include 宏（macro）
+- 编译(Compilation)：编译成汇编语言
+- 汇编(Assemble)：转为机器码
+- 链接(Linking)：库文件链接成为可执行文件
+
+# struct 和 class区别
+class和struct做类型定义时只有两点区别：
+1. 默认继承权限。如果不明确指定，来自class的继承按照private继承处理，来自struct的继承按照public继承处理；
+2. 成员的默认访问权限。class的成员默认是private权限，struct默认是public权限。

@@ -5,7 +5,7 @@ class Singleton
 {
 public:
     static Singleton& getinstance() {
-        static Singleton instance;
+        static Singleton instance;//c++11以后staic可以保证在多线程环境下，语句只会被执行一次。
         return instance;
     }
 
