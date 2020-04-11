@@ -329,5 +329,22 @@ private:
 
 # struct 和 class区别
 class和struct做类型定义时只有两点区别：
-1. 默认继承权限。如果不明确指定，来自class的继承按照private继承处理，来自struct的继承按照public继承处理；
+1. 默认继承权限。如果不明确指定，子类是class的继承按照private继承处理，子类是struct的继承按照public继承处理；
 2. 成员的默认访问权限。class的成员默认是private权限，struct默认是public权限。
+
+# inline函数缺点
+1. 代码膨胀，消耗硬盘与内存空间
+2. inline函数无法随着函数库升级而升级
+
+# c++四种分配内存的方法整理
+1. calloc 函数： void *calloc(unsigned int num, unsigned int size)
+按照所给的数据个数和数据类型所占字节数，分配一个 num * size 连续的空间。
+calloc申请内存空间后，会自动初始化内存空间为 0，但是malloc不会进行初始化，其内存空间存储的是一些随机数据。
+
+2. malloc 函数： void *malloc(unsigned int size)
+在内存的动态分配区域中分配一个长度为size的连续空间，如果分配成功，则返回所分配内存空间的首地址，否则返回NULL，申请的内存不会进行初始化。
+
+3. realloc 函数： void *realloc(void *ptr, unsigned int size)
+动态分配一个长度为size的内存空间，并把内存空间的首地址赋值给ptr，把ptr内存空间调整为size。申请的内存空间不会进行初始化。
+
+4. new是动态分配内存的运算符，自动计算需要分配的空间，在分配类类型的内存空间时，同时调用类的构造函数，对内存空间进行初始化，即完成类的初始化工作。动态分配内置类型是否自动初始化取决于变量定义的位置，在函数体外定义的变量都初始化为0，在函数体内定义的内置类型变量都不进行初始化。
