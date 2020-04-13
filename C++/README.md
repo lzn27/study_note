@@ -333,10 +333,14 @@ class和struct做类型定义时只有两点区别：
 1. 默认继承权限。如果不明确指定，子类是class的继承按照private继承处理，子类是struct的继承按照public继承处理；
 2. 成员的默认访问权限。class的成员默认是private权限，struct默认是public权限。
 
-# inline函数缺点
+# inline函数
+1. 在调用处展开函数，节省函数调用入栈出栈的开销。
 1. 代码膨胀，消耗硬盘与内存空间
 2. inline函数无法随着函数库升级而升级
-
+3. inline和普通函数一样会做安全检查和自动类型转换
+4. 在类中声明并完成定义的成员函数，默认是inline函数。类内声明类外定义的则默认不是inline。
+5. 虚函数也可以定义为inline函数，（在类中定义也是默认具有inline属性的），但是只有在编译期可以确定调用的函数版本时才可能会inline。？
+   
 # c++四种分配内存的方法整理
 1. calloc 函数： void *calloc(unsigned int num, unsigned int size)
 按照所给的数据个数和数据类型所占字节数，分配一个 num * size 连续的空间。
