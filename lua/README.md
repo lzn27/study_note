@@ -123,7 +123,7 @@ end
 c isn't 1 or 2, c is 3
 ```
 
-# 8. 条件判断语句
+# 8. 条件语句
 ```lua
 -- Example 19   -- Conditional assignment.
 -- value = test and x or y
