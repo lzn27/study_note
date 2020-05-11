@@ -469,3 +469,8 @@ error loading module 'iuplua' from file 'C:\Program Files (x86)\Lua\5.1\clibs\iu
     end
     -- use closure to create secure environments, also called sandboxes. What makes this example nice is that, after that redefinition, there is no way for the program to call the unrestricted open.
 ```
+
+3. lua的ugly面：
+   - 不要再table中使用nil，不然#返回的长度值是不可控的
+   - return语句必须写在一段代码块的末尾，不能提前，否则会报错
+   - Only one value is returned from a function if it's not the last one in a list。在一个函数的列表的前面的函数只能返回一个值（会漏掉该函数后面的值。所以不要使用形如 (fun1,fun2,...) 的用法）。
