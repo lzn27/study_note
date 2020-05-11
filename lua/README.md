@@ -455,3 +455,17 @@ error loading module 'iuplua' from file 'C:\Program Files (x86)\Lua\5.1\clibs\iu
 # 附录
 1. pairs和ipairs，ipairs只能按照索引1，2，3...遍历，第一次遇到空的索引就会停止。pairs可以遍历所有。
 
+2. lua closures闭包：closure is a function plus all it needs to aceess its **upvalue** correctly. Technically speaking, what is a value in Lua is the closure, not the function. The function itself is just a prototype for closures. Nevertheless, we will continue to use the term "function" to refer to a closure whenever there is no possibility of confusion.
+```lua
+    do
+      local oldOpen = io.open
+      io.open = function (filename, mode)
+        if access_OK(filename, mode) then
+          return oldOpen(filename, mode)
+        else
+          return nil, "access denied"
+        end
+      end
+    end
+    -- use closure to create secure environments, also called sandboxes. What makes this example nice is that, after that redefinition, there is no way for the program to call the unrestricted open.
+```
