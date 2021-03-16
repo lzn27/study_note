@@ -12,3 +12,16 @@ c#的结构是值类型，可以用new进行构造函数的初始化，但是内
 ## 4 struct 与 class
 1. C#中class和Struct的默认访问权限都是private
 2. struct使用new会给内部的变量赋默认初值。
+
+## 5 c# Dictionary<> 深拷贝
+```c#
+public static Dictionary<TKey, TValue> DeepClone<TKey, TValue>(Dictionary<TKey, TValue> original) where TValue : ICloneable
+{
+    Dictionary<TKey, TValue> ret = new Dictionary<TKey, TValue>(original.Count, original.Comparer);
+    foreach (KeyValuePair<TKey, TValue> entry in original)
+    {
+        ret.Add(entry.Key, (TValue) entry.Value.Clone());
+    }
+    return ret;
+}
+```
