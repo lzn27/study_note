@@ -16,3 +16,6 @@ s = table.concat(t,"\n")
 ```
 
 ## 4 减少table的新建，尽可能重用table，根据具体试验适当调教垃圾收集器
+
+## 5 lua table 的实现
+https://blog.codingnow.com/2005/10/lua_table.html
