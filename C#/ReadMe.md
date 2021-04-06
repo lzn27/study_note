@@ -10,8 +10,10 @@ c#的结构是值类型，可以用new进行构造函数的初始化，但是内
 3. 不要使用空的析构函数。空的析构函数会在终结器里面生成一个入口，垃圾收集器在处理finalize queue时会使用这个入口去执行析构函数，降低性能。
 
 ## 4 struct 与 class
+1. struct是值类型放在栈中，class是引用类型放在堆里
 1. C#中class和Struct的默认访问权限都是private
 2. struct使用new会给内部的变量赋默认初值。
+
 
 ## 5 c# Dictionary<> 深拷贝
 ```c#
