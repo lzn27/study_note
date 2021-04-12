@@ -33,7 +33,7 @@
 - reserve
 - vector占用的内存空间是只增不减的。若要回收内存可以：
 ```c++
-vector<int>().swap(nums);//使用匿名vector对象与nums交换，达到回收内存的目的。
+vector<int>(nums).swap(nums);//使用匿名vector对象与nums交换，达到回收内存的目的。
 //----方法2----
 nums.shrink_to_fit();//c++11 自动改变capacity以等于size，可能会引起内存重新分配。
 ```
