@@ -1,5 +1,5 @@
 ## 1 local变量
-lua读取local变量效率很高，尽量使用local。
+lua读取local变量效率很高，尽量使用local。因为全局变量需要从环境table里读取，会多一次hash的过程。
 
 ## 2 table 重新哈希rehash
 当需要创建数量很多的小table时尽量提前填充好每个table到预计的大小，避免rehash。单独创建一个很大的table并不会产生太多rehash。
